@@ -1,0 +1,293 @@
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  color: #7e57c2;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  text-decoration: none;
+}
+
+.main-nav {
+  display: flex;
+  flex: 2;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: #4a4a4a;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  padding: 0.5rem 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #7e57c2;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #7e57c2;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.auth-links {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-login {
+  color: #7e57c2;
+  border: 1px solid #7e57c2;
+  background-color: transparent;
+}
+
+.btn-login:hover {
+  background-color: rgba(126, 87, 194, 0.1);
+}
+
+.btn-signup {
+  color: white;
+  background-color: #7e57c2;
+  border: 1px solid #7e57c2;
+}
+
+.btn-signup:hover {
+  background-color: #6a47b8;
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  
+  .logo-container {
+    flex: 1;
+  }
+  
+  .main-nav {
+    flex-basis: 100%;
+    order: 3;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+  
+  .auth-links {
+    flex-basis: 100%;
+    order: 4;
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* .header {
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #7c3aed;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.upload-button {
+  background: linear-gradient(45deg, #7c3aed, #6d28d9);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #4a5568;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #7c3aed;
+}
+
+.nav-link.highlight {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.auth-link {
+  color: #4a5568;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-button {
+  background: #7c3aed;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.auth-button:hover {
+  background: #6d28d9;
+  transform: translateY(-1px);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.message-link {
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.message-icon {
+  font-size: 1.5rem;
+}
+
+.message-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #EF4444;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+/* Make sure the message icon is visible with proper spacing */
+/* .nav-link.message-link {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.nav-link.message-link:hover {
+  background-color: rgba(124, 58, 237, 0.1);
+}
+
+/* Responsive adjustments */
+/* @media (max-width: 768px) {
+  .message-icon {
+    font-size: 1.25rem;
+  }
+  
+  .message-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+  }
+}  */

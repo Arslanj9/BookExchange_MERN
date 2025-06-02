@@ -1,0 +1,164 @@
+.requests-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.requests-header {
+  margin-bottom: 2rem;
+}
+
+.requests-header h1 {
+  font-size: 2rem;
+  color: #1F2937;
+  margin-bottom: 1.5rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid #E5E7EB;
+}
+
+.tab {
+  padding: 1rem 2rem;
+  border: none;
+  background: none;
+  font-weight: 600;
+  color: #6B7280;
+  cursor: pointer;
+  position: relative;
+}
+
+.tab.active {
+  color: #7C3AED;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #7C3AED;
+}
+
+.requests-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.request-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.request-book-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.request-book-info img {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.request-book-info h3 {
+  margin: 0;
+  color: #1F2937;
+}
+
+.request-date {
+  color: #6B7280;
+  font-size: 0.875rem;
+}
+
+.request-message {
+  color: #4B5563;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.request-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.accept-button,
+.reject-button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.accept-button {
+  background: #10B981;
+  color: white;
+}
+
+.reject-button {
+  background: #EF4444;
+  color: white;
+}
+
+.request-status {
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.request-status.pending {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.request-status.accepted {
+  background-color: #D1FAE5;
+  color: #059669;
+  padding: 0.75rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.request-status.rejected {
+  background-color: #FEE2E2;
+  color: #DC2626;
+  padding: 0.75rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.request-actions {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.request-card:hover .request-actions {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .tabs {
+    flex-direction: column;
+  }
+  
+  .tab {
+    text-align: center;
+  }
+}
