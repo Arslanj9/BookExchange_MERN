@@ -35,7 +35,7 @@ export const getRequestsForUser = async (req, res) => {
     }
 
     // Find all requests where ownerId matches
-    const requests = await Request.find({ ownerId }).populate("bookId").populate("requesterId", "username email");
+    const requests = await Request.find({ owner: ownerId }).populate("book").populate("requester");
 
     res.json(requests);
   } catch (error) {

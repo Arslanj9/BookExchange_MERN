@@ -26,27 +26,29 @@ const BookRequests = () => {
             fetchIncomingRequests();
         }
         // You can also add fetching outgoing requests here if needed
-    }, [activeTab, user]);
+    }, []);
 
     const fetchIncomingRequests = async () => {
         try {
             const response = await fetch(
-                `http://localhost:5000/api/requests/${user._id}`
+                `http://localhost:3000/api/requests/${user._id}`
             );
             if (!response.ok) {
                 throw new Error("Failed to fetch incoming requests");
             }
             const data = await response.json();
 
+            console.log(`Hello G: ${JSON.stringify(data)}`)
+
             // Map backend request data to shape your component expects:
             const formattedRequests = data.map((req) => ({
                 id: req._id,
-                bookCover: req.bookId?.coverImage || "", // Adjust field names based on your DB schema
-                bookTitle: req.bookId?.title || "No Title",
-                requesterName: req.requesterId?.username || "Unknown",
+                bookCover: req.book?.coverImage || "",
+                bookTitle: req.book?.title || "No Title",
+                requesterName: req.requester?.username || "Unknown",
                 requestDate: new Date(req.createdAt).toLocaleDateString(),
                 message: req.message,
-                status: req.status || "pending", // assuming you have a status field
+                status: req.status || "pending", 
             }));
 
             setRequests(formattedRequests);
@@ -84,7 +86,7 @@ const BookRequests = () => {
                 {activeTab === "incoming" ? (
                     <IncomingRequests
                         requests={requests}
-                        onAction={handleRequestAction}
+                        onAction={fetchIncomingRequests}
                     />
                 ) : (
                     <OutgoingRequests requests={requests} />
