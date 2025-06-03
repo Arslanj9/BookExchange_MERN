@@ -12,12 +12,17 @@ const BookCard = ({ book }) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const isOwner = user?._id === book.owner._id;
 
+    console.log("Book data is: " + JSON.stringify(book.owner._id))
+    
+
     useEffect(() => {
         const fetchWishlistStatus = async () => {
             if (!user?._id || !book?._id) return;
 
             try {
-                const res = await fetch(`http://localhost:3000/api/books/user/${user._id}/wishlist`);
+                const res = await fetch(
+                    `http://localhost:3000/api/books/user/${user._id}/wishlist`
+                );
                 const data = await res.json();
 
                 if (Array.isArray(data.wishlist)) {
@@ -37,7 +42,6 @@ const BookCard = ({ book }) => {
     const handleWishlistToggle = async (e) => {
         e.stopPropagation();
 
-        console.log("hello G");
         try {
             const res = await fetch(
                 `http://localhost:3000/api/books/toggleWishlist`,
@@ -62,6 +66,48 @@ const BookCard = ({ book }) => {
             console.error(err);
         }
     };
+
+    const handleRequestClick = async (e) => {
+        e.stopPropagation();
+
+        const bookId = book?._id;
+        const ownerId = book?.owner?._id;
+
+        console.log(`inside request fucniton ${JSON.stringify(bookId)} }`)
+
+        if (!user || !bookId || !ownerId) {
+            alert("User or book information missing.");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/api/requests", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    bookId,
+                    requesterId: user._id,
+                    ownerId,
+                    message: "I'd like to borrow this book.",
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Failed to send request.");
+            }
+
+            alert("Request sent successfully!");
+            console.log("Response:", data);
+        } catch (error) {
+            console.error("Error sending request:", error);
+            alert("Error: " + error.message);
+        }
+    };
+
 
     const handleImageClick = (e) => {
         e.stopPropagation();
@@ -322,10 +368,7 @@ const BookCard = ({ book }) => {
                 <div className="book-actions">
                     <button
                         className={`action-btn ${!isOwner ? "secondary" : ""}`}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            console.log("Request book:", book.id);
-                        }}
+                        onClick={handleRequestClick}
                         disabled={
                             JSON.parse(localStorage.getItem("user"))?._id ===
                             book.owner._id

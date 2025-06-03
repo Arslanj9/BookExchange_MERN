@@ -4,7 +4,7 @@ import User from '../models/User.js';
 export const authenticateToken = async (req, res, next) => {
   try {
 
-    console.log("Authorization header:", req.headers.authorization);
+    // console.log("Authorization header:", req.headers.authorization);
 
     
     const authHeader = req.headers['authorization'];

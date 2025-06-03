@@ -108,7 +108,6 @@ export const deleteBook = async (req, res) => {
 export const toggleWishlist = async (req, res) => {
   const { bookId, userId } = req.body;
 
-  console.log(`Hello: ${bookId} ${userId} `)
 
   if (!bookId || !userId) {
     return res.status(400).json({ message: "Missing userId or bookId" });

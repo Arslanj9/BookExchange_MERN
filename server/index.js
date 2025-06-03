@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.js';
 import bookRoutes from './routes/books.js';
 import userRoutes from './routes/users.js';
 import exchangeRoutes from './routes/exchanges.js';
+import requestRoutes from './routes/requests.js';
 
 // Load environment variables
 dotenv.config();
@@ -48,6 +49,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/exchanges', exchangeRoutes);
+app.use("/api/requests", requestRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
