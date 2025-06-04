@@ -43,3 +43,31 @@ export const getRequestsForUser = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+
+
+export const updateRequestStatus = async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!['accepted', 'rejected'].includes(status)) {
+        return res.status(400).json({ error: 'Invalid status' });
+    }
+
+    try {
+        const updatedRequest = await Request.findByIdAndUpdate(
+            id,
+            { status },
+            { new: true }
+        ).populate('book requester owner');
+
+        if (!updatedRequest) {
+            return res.status(404).json({ error: 'Request not found' });
+        }
+
+        res.status(200).json(updatedRequest);
+    } catch (error) {
+        console.error("Update error:", error);
+        res.status(500).json({ error: 'Failed to update request status' });
+    }
+};
